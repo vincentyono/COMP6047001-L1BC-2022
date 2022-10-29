@@ -10,3 +10,4 @@
 - Week 4 - more List, Tuples, more Strings and more Conditional
 - Week 5 - Functions
 - Week 6 - Dictionary
+- Week 7 - Introduction to Object Oriented Programming
