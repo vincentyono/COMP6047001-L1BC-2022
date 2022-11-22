@@ -11,3 +11,4 @@
 - Week 5 - Functions
 - Week 6 - Dictionary
 - Week 7 - Introduction to Object Oriented Programming
+- Week 8 - Crash course to C Programming Language
