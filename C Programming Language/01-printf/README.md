@@ -21,7 +21,7 @@
 | \r              | Carriage return       |
 | \t              | Horizontal tab        |
 | \v              | Vertical tab          |
-| \'              | Single quotation mark |
-| \"              | Double quotation mark |
-| \?              | Question mark         |
+| \\'             | Single quotation mark |
+| \\"             | Double quotation mark |
+| \\?             | Question mark         |
 | \\              | Backslash             |
