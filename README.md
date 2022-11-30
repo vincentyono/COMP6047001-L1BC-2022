@@ -12,3 +12,4 @@
 - Week 6 - Dictionary
 - Week 7 - Introduction to Object Oriented Programming
 - Week 8 - Crash course to C Programming Language
+- Week 9 - More Object Oriented Programming, Inheritance and Polymorphism
