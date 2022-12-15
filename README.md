@@ -14,3 +14,4 @@
 - Week 8 - Crash course to C Programming Language
 - Week 9 - More Object Oriented Programming, Inheritance and Polymorphism
 - Week 10 - Files
+- Week 11 - Introduction to pygame
