@@ -3,16 +3,13 @@ import json
 
 
 class Player(pygame.sprite.Sprite):
-
     def __init__(self):
         super().__init__()
-        self.__character_sheet = pygame.image.load(
-            "assets/character_sheet.png").convert_alpha()
+        self.__character_sheet = pygame.image.load("assets/character_sheet.png").convert_alpha()
 
         self.character_surface = pygame.Surface((24, 24))
         self.character_surface.set_colorkey((0, 0, 0))
-        self.character_surface.blit(
-            self.__character_sheet, (0, 0), (1032, 0, 24, 24))
+        self.character_surface.blit(self.__character_sheet, (0, 0), (1032, 0, 24, 24))
 
         self.__x = 400
         self.__y = 460
@@ -20,18 +17,6 @@ class Player(pygame.sprite.Sprite):
         self.sprite_number = 1
         self.__status = "walkup"
         self.__alive = True
-
-        self.animation = {
-            "walkup": [f"walkup{i + 1}" for i in range(4)],
-            "walkdown": [f"walkdown{i + 1}" for i in range(4)],
-            "walkleft": [f"walkleft{i + 1}" for i in range(4)],
-            "walkright": [f"walkright{i + 1}" for i in range(4)],
-            "runup": [f"runup{i + 1}" for i in range(6)],
-            "rundown": [f"rundown{i + 1}" for i in range(6)],
-            "runleft": [f"runleft{i + 1}" for i in range(6)],
-            "runright": [f"runright{i + 1}" for i in range(6)],
-            "die": [f"die{i + 1}" for i in range(4)],
-        }
 
         with open("assets/character_sprites.json", "r") as f:
             self.data = json.loads(f.read())
@@ -83,8 +68,16 @@ class Player(pygame.sprite.Sprite):
 
     def change_animation(self, key):
         self.character_surface.fill(pygame.Color(0, 0, 0, 0))
-        self.character_surface.blit(self.__character_sheet, (0, 0), (
-            self.data["frames"][key]["frame"]["x"], self.data["frames"][key]["frame"]["y"], self.data["frames"][key]["frame"]["w"], self.data["frames"][key]["frame"]["h"]))
+        self.character_surface.blit(
+            self.__character_sheet,
+            (0, 0),
+            (
+                self.data["frames"][key]["frame"]["x"],
+                self.data["frames"][key]["frame"]["y"],
+                self.data["frames"][key]["frame"]["w"],
+                self.data["frames"][key]["frame"]["h"],
+            ),
+        )
 
     def update(self, vehicles):
         if self.__status == "die":
@@ -93,13 +86,17 @@ class Player(pygame.sprite.Sprite):
         if self.__status == "die" and self.sprite_number > 3:
             self.sprite_number = 3
 
-        n = int((self.sprite_number % 4) + 1) if self.__status.find(
-            "run") == -1 else int((self.sprite_number % 6) + 1)
+        n = int((self.sprite_number % 4) + 1) if self.__status.find("run") == -1 else int((self.sprite_number % 6) + 1)
         self.change_animation(self.__status + str(n))
 
         self.check_collision(vehicles)
 
     def check_collision(self, vehicles):
-        if pygame.Rect(self.get_position()[0], self.get_position()[1], 24, 24).collidelist([vehicle.get_rect() for vehicle in vehicles]) != -1:
+        if (
+            pygame.Rect(self.get_position()[0], self.get_position()[1], 24, 24).collidelist(
+                [vehicle.get_rect() for vehicle in vehicles]
+            )
+            != -1
+        ):
             self.__status = "die"
             self.__alive = False
